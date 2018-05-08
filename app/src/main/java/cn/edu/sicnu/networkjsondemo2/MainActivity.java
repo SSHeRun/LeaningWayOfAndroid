@@ -18,11 +18,14 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     ListView listView;
     MyAdapter adapter;
     RequestQueue queue;
-    ArrayList<Student> student;
+    ArrayList<Student> students = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,25 +52,25 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                try {
-                    Student
-                    Intent intent = new Intent(MainActivity.this,Main2Activity.class);
-                    intent.putExtra("student",jsonObject.toString());
-                    startActivity(intent);
 
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                Student student = students.get(position);
+                Intent intent = new Intent(MainActivity.this, Main2Activity.class);
+                intent.putExtra("student", student);
+                startActivity(intent);
+
             }
         });
-        
+
     }
 
     public void downloadJsonData(){
         JsonArrayRequest request = new JsonArrayRequest("http://10.0.1.2/piclist.php", new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
-                jsonArray = response;
+                Type type = new TypeToken<ArrayList<Student>>(){}.getType();
+                Gson gson = new Gson();
+                students = gson.fromJson(response.toString(),type);
+
                 adapter.notifyDataSetChanged();
             }
         }, new Response.ErrorListener() {
@@ -84,17 +87,12 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            return jsonArray.length();
+            return students.size();
         }
 
         @Override
         public Object getItem(int position) {
-            try {
-                return jsonArray.getJSONObject(position).toString();
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            return null;
+            return students.get(position);
         }
 
         @Override
@@ -116,17 +114,11 @@ public class MainActivity extends AppCompatActivity {
                 viewHolder = (ViewHolder) convertView.getTag();
             }
 
-            try {
-                JSONObject jsonObject = jsonArray.getJSONObject(position);
+            Student student = students.get(position);
 
-                viewHolder.textView_name.setText(jsonObject.getString("stuName"));
-                viewHolder.textView_stuno.setText(jsonObject.getString("stuNo"));
-                viewHolder.textView_gender.setText(jsonObject.getString("stuGender"));
-
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+            viewHolder.textView_name.setText(student.stuName);
+            viewHolder.textView_stuno.setText(student.stuNo);
+            viewHolder.textView_gender.setText(student.stuGender);
 
 
             return convertView;

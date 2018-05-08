@@ -1,3 +1,4 @@
+package cn.edu.sicnu.networkjsondemo2;
 
 import java.io.Serializable;
 

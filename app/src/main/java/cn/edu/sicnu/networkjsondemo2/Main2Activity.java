@@ -30,33 +30,29 @@ public class Main2Activity extends AppCompatActivity {
         textView_class = findViewById(R.id.textView_class);
         imageView = findViewById(R.id.imageView);
 
-        try {
-            JSONObject jsonObject = new JSONObject(getIntent().getStringExtra("student"));
+        Student student = (Student) getIntent().getSerializableExtra("student");
 
-            textView_name.setText(jsonObject.getString("stuName"));
-            textView_stuno.setText(jsonObject.getString("stuNo"));
-            textView_gender.setText(jsonObject.getString("stuGender"));
-            textView_class.setText(jsonObject.getString("stuClass"));
+        textView_name.setText(student.stuName);
+        textView_stuno.setText(student.stuNo);
+        textView_gender.setText(student.stuGender);
+        textView_class.setText(student.stuClass);
 
-            queue = Volley.newRequestQueue(this);
+        queue = Volley.newRequestQueue(this);
 
-            ImageRequest request = new ImageRequest("http://10.0.1.2/" + jsonObject.getString("imagePath"), new Response.Listener<Bitmap>() {
-                @Override
-                public void onResponse(Bitmap response) {
-                    imageView.setImageBitmap(response);
-                }
-            }, 0, 0, ImageView.ScaleType.CENTER_INSIDE, Bitmap.Config.RGB_565, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
+        ImageRequest request = new ImageRequest("http://10.0.1.2/" + student.imagePath, new Response.Listener<Bitmap>() {
+            @Override
+            public void onResponse(Bitmap response) {
+                imageView.setImageBitmap(response);
+            }
+        }, 0, 0, ImageView.ScaleType.CENTER_INSIDE, Bitmap.Config.RGB_565, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
 
-                }
-            });
+            }
+        });
 
-            queue.add(request);
+        queue.add(request);
 
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
 
     }
 }
