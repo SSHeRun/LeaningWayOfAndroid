@@ -23,6 +23,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -30,9 +31,9 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
     ListView listView;
-    JSONArray jsonArray = new JSONArray();
     MyAdapter adapter;
     RequestQueue queue;
+    ArrayList<Student> student;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +50,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 try {
-                    JSONObject jsonObject = jsonArray.getJSONObject(position);
-
+                    Student
                     Intent intent = new Intent(MainActivity.this,Main2Activity.class);
                     intent.putExtra("student",jsonObject.toString());
                     startActivity(intent);
