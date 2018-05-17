@@ -2,12 +2,13 @@ package com.example.elegant_kp.calculator;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView textView;
+    TextView textView_input, textView_output;
     Button btn_clear;
     Button btn_negative;
     Button btn_del;
@@ -28,11 +29,21 @@ public class MainActivity extends AppCompatActivity {
     Button btn_point;
     Button btn_equal;
 
+    private String str = ""; //保存数字
+    private String strOld = ""; //原数字
+    private char op = ' '; //记录运算符
+    private int count = 0; //判断要计算的次数，如果超过一个符号，要算出来一部分
+    private float result = 0; //计算输出结果
+//    private boolean errBoolean = false;//有错误时为true
+    private boolean flagBoolean = false;//如果为true，可以响应运算消息， 只有前面是数字才可以响应运算消息
+    private boolean flagPoint = false;//小数点标志位
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        textView = findViewById(R.id.textView);
+        textView_input = findViewById(R.id.textView_input);
+        textView_output = findViewById(R.id.textView_output);
 
         btn_0 = findViewById(R.id.zero);
         btn_1 = findViewById(R.id.one);
@@ -55,6 +66,121 @@ public class MainActivity extends AppCompatActivity {
         btn_equal = findViewById(R.id.equal);
 
 
+        //设置按钮侦听事件
+        btn_0.setOnClickListener(listener);
+        btn_1.setOnClickListener(listener);
+        btn_2.setOnClickListener(listener);
+        btn_3.setOnClickListener(listener);
+        btn_4.setOnClickListener(listener);
+        btn_5.setOnClickListener(listener);
+        btn_6.setOnClickListener(listener);
+        btn_7.setOnClickListener(listener);
+        btn_8.setOnClickListener(listener);
+        btn_9.setOnClickListener(listener);
+
+
+        btn_clear.setOnClickListener(listener);
+        btn_negative.setOnClickListener(listener);
+        btn_del.setOnClickListener(listener);
+        btn_div.setOnClickListener(listener);
+        btn_mul.setOnClickListener(listener);
+        btn_add.setOnClickListener(listener);
+        btn_sub.setOnClickListener(listener);
+        btn_point.setOnClickListener(listener);
+        btn_equal.setOnClickListener(listener);
+    }
+
+
+
+    public View.OnClickListener listener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.zero:
+                    num(0);
+                    break;
+                case R.id.one:
+                    num(1);
+                    break;
+                case R.id.two:
+                    num(2);
+                    break;
+                case R.id.three:
+                    num(3);
+                    break;
+                case R.id.four:
+                    num(4);
+                    break;
+                case R.id.five:
+                    num(5);
+                    break;
+                case R.id.six:
+                    num(6);
+                    break;
+                case R.id.seven:
+                    num(7);
+                    break;
+                case R.id.eight:
+                    num(8);
+                    break;
+                case R.id.nine:
+                    num(9);
+                    break;
+                case R.id.clear:
+                    clear();
+                    break;
+                case R.id.negative:
+
+                    break;
+                case R.id.del:
+
+                    break;
+                case R.id.div:
+
+                    break;
+                case R.id.mul:
+
+                    break;
+                case R.id.add:
+
+                    break;
+                case R.id.sub:
+
+                    break;
+                case R.id.point:
+
+                    break;
+                case R.id.equal:
+
+                    break;
+
+                default:
+                        break;
+
+            }
+        }
+    };
+
+
+    private void num(int i) {
+        str = str + String.valueOf(i);
+        strOld= str;
+        textView_input.setText(strOld);
+        flagBoolean = true;//可以响应运算
 
     }
+
+    private void clear() {
+        str = strOld = "";
+        count = 0;
+        op = ' ';
+        result = 0;
+        flagBoolean = false;
+        flagPoint = false;
+
+        textView_input.setText("");
+        textView_output.setText("0");
+
+    }
+
 }

@@ -21,11 +21,19 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/textView_input"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:gravity="right|bottom"
+            android:layout_height="60dp"
             android:layout_marginRight="3dp"
+            android:gravity="right|bottom"
+            android:text=""
+            android:textSize="40dp" />
+        <TextView
+            android:id="@+id/textView_output"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginRight="3dp"
+            android:gravity="right|bottom"
             android:text="0"
             android:textSize="40dp" />
 
