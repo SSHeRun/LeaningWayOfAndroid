@@ -1,16 +1,23 @@
 package com.example.elegant_kp.calculator;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     TextView textView_input, textView_output;
     Button btn_clear;
-    Button btn_negative;
+    Button btn_left;
+    Button btn_right;
     Button btn_del;
     Button btn_div;
     Button btn_7;
@@ -38,6 +45,10 @@ public class MainActivity extends AppCompatActivity {
     private boolean flagBoolean = false;//如果为true，可以响应运算消息， 只有前面是数字才可以响应运算消息
     private boolean flagPoint = false;//小数点标志位
 
+
+    ArrayList<String> stringList = new ArrayList<>();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +67,8 @@ public class MainActivity extends AppCompatActivity {
         btn_8 = findViewById(R.id.eight);
         btn_9 = findViewById(R.id.nine);
         btn_clear = findViewById(R.id.clear);
-        btn_negative = findViewById(R.id.negative);
+        btn_left = findViewById(R.id.left);
+        btn_right = findViewById(R.id.right);
         btn_del = findViewById(R.id.del);
         btn_div = findViewById(R.id.div);
         btn_mul = findViewById(R.id.mul);
@@ -80,7 +92,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         btn_clear.setOnClickListener(listener);
-        btn_negative.setOnClickListener(listener);
+        btn_left.setOnClickListener(listener);
+        btn_right.setOnClickListener(listener);
         btn_del.setOnClickListener(listener);
         btn_div.setOnClickListener(listener);
         btn_mul.setOnClickListener(listener);
@@ -129,29 +142,32 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.clear:
                     clear();
                     break;
-                case R.id.negative:
-
+                case R.id.left:
+                    putChar('(');
+                    break;
+                case R.id.right:
+                    putChar(')');
                     break;
                 case R.id.del:
-
+                    del();
                     break;
                 case R.id.div:
-
+                    putChar('/');
                     break;
                 case R.id.mul:
-
+                    putChar('*');
                     break;
                 case R.id.add:
-
+                    putChar('+');
                     break;
                 case R.id.sub:
-
+                    putChar('-');
                     break;
                 case R.id.point:
-
+                    putChar('.');
                     break;
                 case R.id.equal:
-
+                    getResult();
                     break;
 
                 default:
@@ -163,13 +179,19 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void num(int i) {
-        str = str + String.valueOf(i);
-        strOld= str;
+        str = String.valueOf(i);
+        strOld = strOld + str;
         textView_input.setText(strOld);
         flagBoolean = true;//可以响应运算
-
     }
 
+    private void putChar(char c) {
+        str = String.valueOf(c);
+        strOld = strOld + str;
+        textView_input.setText(strOld);
+
+    }
+  //清除界面c
     private void clear() {
         str = strOld = "";
         count = 0;
@@ -181,6 +203,46 @@ public class MainActivity extends AppCompatActivity {
         textView_input.setText("");
         textView_output.setText("0");
 
+    }
+    //回退
+    private void del() {
+        str = strOld.substring(0, strOld.length() - 1);
+        strOld = str;
+    }
+
+    private void getResult() {
+        String exp = textView_input.getText().toString();
+        Calculate cal = new Calculate();
+        double result = cal.getResult(exp);
+        textView_output.setText(String.valueOf(result));
+
+        String history = textView_input.getText().toString() + " = " + textView_output.getText().toString();
+        stringList.add(history);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.option_menu,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.history:
+                Intent intent = new Intent(this, HistoryActivity.class);
+                if(stringList.isEmpty()) {
+                    stringList.add("暂无历史记录！");
+                }
+                intent.putExtra("history", stringList);
+                startActivity(intent);
+                break;
+            case R.id.science_model:
+                break;
+            case R.id.setting:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

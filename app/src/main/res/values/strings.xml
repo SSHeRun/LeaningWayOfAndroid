@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">Calculator</string>
+    <string name="app_name">计算器</string>
+    <string name="history_name">历史记录</string>
+
 </resources>

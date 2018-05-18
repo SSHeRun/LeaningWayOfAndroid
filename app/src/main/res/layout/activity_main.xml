@@ -59,15 +59,15 @@
                 android:textSize="25dp"/>
 
             <Button
-                android:id="@+id/negative"
-                android:layout_columnWeight="1"
-                android:layout_rowWeight="1"
+                android:id="@+id/left"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="1"
+                android:layout_columnWeight="1"
                 android:layout_row="0"
-                android:text="+/-"
-                android:textSize="25dp"/>
+                android:layout_rowWeight="1"
+                android:text="("
+                android:textSize="25dp" />
 
             <Button
                 android:id="@+id/del"
@@ -228,17 +228,27 @@
 
             <Button
                 android:id="@+id/zero"
-                android:layout_columnWeight="2"
+                android:layout_columnWeight="1"
                 android:layout_rowWeight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="0"
-                android:layout_columnSpan="2"
                 android:layout_gravity="fill_horizontal"
                 android:layout_row="4"
                 android:text="0"
                 android:textSize="25dp"/>
 
+            <Button
+                android:id="@+id/right"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="fill_horizontal"
+                android:layout_column="1"
+                android:layout_row="4"
+                android:text=")"
+                android:textSize="25dp"/>
             <Button
                 android:id="@+id/point"
                 android:layout_columnWeight="1"
