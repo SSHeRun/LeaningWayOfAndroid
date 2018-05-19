@@ -15,11 +15,13 @@ public class MySQLHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table person(_id integer primary key autoincrement,name text,age integer)");
+        db.execSQL("create table historys(_id integer primary key autoincrement,result varchar(50), date varchar(50))");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
     }
+
+
 }

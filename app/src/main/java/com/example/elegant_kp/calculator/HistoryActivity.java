@@ -28,7 +28,7 @@ public class HistoryActivity extends AppCompatActivity {
         listView_result = findViewById(R.id.listview_result);
 
         Intent intent = getIntent();
-        arrayList = intent.getStringArrayListExtra("history");
+        arrayList = intent.getStringArrayListExtra("historys");
         arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
         listView_result.setAdapter(arrayAdapter);
 
@@ -62,7 +62,7 @@ public class HistoryActivity extends AppCompatActivity {
 
     }
 
-    public void myReturn(View v) {
+    public void myReturn() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
@@ -78,11 +78,14 @@ public class HistoryActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.menu_return:
-                Intent intent = new Intent(this, MainActivity.class);
-                startActivity(intent);
+                myReturn();
                 break;
             case R.id.menu_clear:
                 clear();
+                break;
+            case R.id.menu_db:
+                Intent intent1 = new Intent(this, DBActivity.class);
+                startActivity(intent1);
                 break;
         }
         return super.onOptionsItemSelected(item);

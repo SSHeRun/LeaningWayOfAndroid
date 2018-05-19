@@ -1,16 +1,23 @@
 package com.example.elegant_kp.calculator;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CursorAdapter;
+import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -45,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean flagBoolean = false;//如果为true，可以响应运算消息， 只有前面是数字才可以响应运算消息
     private boolean flagPoint = false;//小数点标志位
 
+    String history;
 
     ArrayList<String> stringList = new ArrayList<>();
 
@@ -216,7 +224,7 @@ public class MainActivity extends AppCompatActivity {
         double result = cal.getResult(exp);
         textView_output.setText(String.valueOf(result));
 
-        String history = textView_input.getText().toString() + " = " + textView_output.getText().toString();
+        history = textView_input.getText().toString() + " = " + textView_output.getText().toString();
         stringList.add(history);
     }
 
@@ -234,7 +242,7 @@ public class MainActivity extends AppCompatActivity {
                 if(stringList.isEmpty()) {
                     stringList.add("暂无历史记录！");
                 }
-                intent.putExtra("history", stringList);
+                intent.putExtra("historys", stringList);
                 startActivity(intent);
                 break;
             case R.id.science_model:
@@ -243,6 +251,30 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+
+    public void save() {
+        SQLiteDatabase db;
+        MySQLHelper dbhelper;
+
+        //初始化MySQLHelper对象（建立一个数据库链接/如果没有该数据库，则创建一个数据库）
+        dbhelper = new MySQLHelper(this,"kangping.db",null,1);
+        //它会调用并返回一个可以读写数据库的对象
+        //在第一次调用时会调用onCreate的方法
+        //当数据库存在时会调用onOpen方法
+        // 结束时调用onClose方法
+        db = dbhelper.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();   //存储键值对
+
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String temp = df.format(new Date());// new Date()为获取当前系统时间
+
+        contentValues.put("result_history",history);
+        contentValues.put("date","temp");
+
+        db.insert("historys", null, contentValues);
+
     }
 
 }
