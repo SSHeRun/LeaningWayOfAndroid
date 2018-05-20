@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constrainlayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Setting">
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="200dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="34dp"
+        android:layout_marginTop="68dp"
+        android:background="@android:color/holo_blue_light"
+        android:text="设置应用主题"
+        app:layout_constraintBottom_toTopOf="@+id/button_night"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_night"
+        android:layout_width="200dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="33dp"
+        android:background="@android:color/holo_blue_dark"
+        android:text="开启/关闭夜间模式"
+        app:layout_constraintBottom_toTopOf="@+id/button_return"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button" />
+
+    <Button
+        android:id="@+id/button_return"
+        android:layout_width="200dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="181dp"
+        android:background="@android:color/holo_blue_bright"
+        android:onClick="my_return"
+        android:text="返回计算"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_night" />
+</android.support.constraint.ConstraintLayout>

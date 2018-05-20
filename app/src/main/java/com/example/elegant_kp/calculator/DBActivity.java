@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.Toast;
 
 public class DBActivity extends AppCompatActivity {
 
@@ -59,14 +60,19 @@ public class DBActivity extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case R.id.menu_clear:
-
+                db_clear();
                 break;
         }
         return super.onOptionsItemSelected(item);
     }
 
     private void db_clear() {
-
+         dbhelper = new MySQLHelper(DBActivity.this,"kangping.db",null,1);
+         db = dbhelper.getWritableDatabase();//打开数据库
+         db.delete("historys_db",null, null);
+         cursor = db.query("historys_db",null,null,null,null,null,null);
+         cursorAdapter.swapCursor(cursor);
+         Toast.makeText(DBActivity.this, "已清空数据库！", Toast.LENGTH_SHORT).show();
     }
 
 }

@@ -50,35 +50,15 @@ public class HistoryActivity extends AppCompatActivity {
                 builder.setPositiveButton("是", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        AlertDialog.Builder builder = new AlertDialog.Builder(HistoryActivity.this);
-                        builder.setTitle("提醒");
-                        builder.setMessage("是否从数据库中完全删除该条记录？");
-                        builder.setPositiveButton("是", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                arrayList.remove(position);
-                                arrayAdapter.notifyDataSetChanged();
-                                //数据库删除
-                                dbhelper = new MySQLHelper(HistoryActivity.this,"kangping.db",null,1);
-                                db = dbhelper.getWritableDatabase();//打开数据库
-                                db.delete("historys_db","_id=?", new String[] {String.valueOf(position + 1)});
-
-                            }
-                        });
-                        builder.setNegativeButton("否", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                arrayList.remove(position);
-                                arrayAdapter.notifyDataSetChanged();
-                                Toast.makeText(HistoryActivity.this, "已清空该条记录！", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                        arrayList.remove(position);
+                        arrayAdapter.notifyDataSetChanged();
+                        Toast.makeText(HistoryActivity.this, "已清空该条记录！", Toast.LENGTH_SHORT).show();
                     }
                 });
                 builder.setNegativeButton("否", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-
+                        Toast.makeText(HistoryActivity.this, "已取消清空！", Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -126,7 +106,7 @@ public class HistoryActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 arrayList.clear();
-                arrayList.add("暂无历史记录！");
+                arrayList.add("列表暂无历史记录！如有需要，可从数据库恢复！");
                 arrayAdapter.notifyDataSetChanged();
 //                //数据库删除
 //                dbhelper = new MySQLHelper(HistoryActivity.this,"kangping.db",null,1);

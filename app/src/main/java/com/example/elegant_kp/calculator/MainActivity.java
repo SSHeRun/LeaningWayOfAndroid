@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
     private double result = 0; //计算输出结果
     private boolean isHistory = false;//判断有无历史记录
     private boolean flagBoolean = false;//如果为true，可以响应运算消息， 只有前面是数字才可以响应运算消息
-    private boolean flagPoint = false;//小数点标志位
 
     String history;  //记录单个历史记录
 
@@ -153,7 +152,12 @@ public class MainActivity extends AppCompatActivity {
                     putChar('.');
                     break;
                 case R.id.equal:
-                    getResult();
+                    try{
+                        getResult();
+                    }catch (Exception e)
+                    {
+                        System.out.println("计算错误！");
+                    }
                     break;
                 default:
                         break;
@@ -181,17 +185,20 @@ public class MainActivity extends AppCompatActivity {
         str = strOld = "";
         result = 0;
         flagBoolean = false;
-        flagPoint = false;
-
         textView_input.setText("");
         textView_output.setText("0");
 
     }
     //回退
     private void del() {
-        str = strOld.substring(0, strOld.length() - 1);
-        strOld = str;
-        textView_input.setText(strOld);
+        try{
+            str = strOld.substring(0, strOld.length() - 1);
+            strOld = str;
+            textView_input.setText(strOld);
+        }
+        catch (Exception e){
+            System.out.println("输入字段为空！");
+        }
     }
 
     private void getResult() {
@@ -206,7 +213,9 @@ public class MainActivity extends AppCompatActivity {
             stringList.add(history);
             isHistory = true;
         }
-        stringList.add(history);
+        else {
+            stringList.add(history);
+        }
         //保存到数据库
         save();
     }
@@ -231,6 +240,8 @@ public class MainActivity extends AppCompatActivity {
             case R.id.science_model:  //科学模式
                 break;
             case R.id.setting:  //设置
+                Intent intent2 = new Intent(this, Setting.class);
+                startActivity(intent2);
                 break;
         }
         return super.onOptionsItemSelected(item);

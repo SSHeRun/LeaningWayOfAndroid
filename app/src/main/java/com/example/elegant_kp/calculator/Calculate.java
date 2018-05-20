@@ -13,8 +13,8 @@ public class Calculate {
     public Calculate() { }
 
     public double getResult(String exp) {
-        exp = removeStrSpace(exp);
-// 如果算术表达式尾部没有‘=’号，则在尾部添加‘=’，表示结束符
+        exp = removeStrSpace(exp);  //防止有空格输入
+        // 如果算术表达式尾部没有‘=’号，则在尾部添加‘=’，表示结束符
         if (exp.length() > 1 && !"=".equals(exp.charAt(exp.length() - 1) + "")) {
             exp += "=";
         }
@@ -33,7 +33,7 @@ public class Calculate {
             } else { // 非数字的情况
                 String tempStr = temp.toString(); // 将数字缓存转为字符串
                 if (!tempStr.isEmpty()) {
-                    double num = Double.parseDouble(tempStr); // 将数字字符串转为长整型数
+                    double num = Double.parseDouble(tempStr); // 将数字字符串转为double型数
                     numStack.myPush(num); // 将数字压栈
                     temp = new StringBuffer(); // 重置数字缓存
                 }
@@ -45,30 +45,30 @@ public class Calculate {
                     switch ((char) opStack.myPop()) {
                          case '+':
                              numStack.myPush(a + b);
-                                 break;
+                             break;
                          case '-':
                              numStack.myPush(a - b);
-                                 break;
+                             break;
                          case '*':
                              numStack.myPush(a * b);
-                                 break;
+                             break;
                          case '/':
                              numStack.myPush(a / b);
-                                 break;
+                             break;
                          default:
-                                 break;
+                             break;
                     }
                 } // while循环结束
 
                 if (ch != '=') {
                     opStack.myPush(new Character(ch)); // 符号入栈
                     if (ch == ')') { // 去括号
-                        opStack.myPop();
-                        opStack.myPop();
+                        opStack.myPop();//（1+2）：  ）
+                        opStack.myPop();//:+
                     }
                 }
 
-            }  //else
+            }   //else
         } // for循环结束
 
         return (double) numStack.myPop(); // 返回计算结果
@@ -83,38 +83,32 @@ public class Calculate {
             return false;
         MyStack stack = new MyStack();
 
-        boolean b = false;//用来标记等号是否存在多个
+//        boolean b = false;//用来标记等号是否存在多个
 
         for (int i = 0; i < str.length(); i++) {
            char n = str.charAt(i);  //得到i位置字符
+            char next = str.charAt(i + 1);
              // 判断字符是否合法
            if (!(isNumber(n) || "(".equals(n + "") || ")".equals(n + "")
                    || "+".equals(n + "") || "-".equals(n + "")
-                   || "*".equals(n + "") || "/".equals(n + "")
-                   || "=".equals(n + ""))) {
+                   || "*".equals(n + "") || "/".equals(n + ""))) {
                          return false;
            }
-                      // 将左括号压栈，用来给后面的右括号进行匹配
+           // 将左括号压栈，用来给后面的右括号进行匹配
            if ("(".equals(n + "")) {
                stack.myPush(n);
            }
            if (")".equals(n + "")) { // 匹配括号
-               if (stack.isEmpty() || !"(".equals((char) stack.myPop() + "")) // 括号是否匹配
+               if (stack.isEmpty() || !"(".equals((char) stack.myPop() + "")) // 括号是否匹配,多右括号
                    return false;
                }
-                   // 检查是否有多个'='号
-               if ("=".equals(n + "")) {
-                   if (b)
-                       return  false;
-                   b = true;
-                }
              }
              // 可能会有缺少右括号的情况
            if (!stack.isEmpty())
                    return false;
       // 检查'='号是否不在末尾
-         if (!("=".equals(str.charAt(str.length() - 1) + "")))
-             return false;
+//         if (!("=".equals(str.charAt(str.length() - 1) + "")))
+//             return false;
         return true;
     }
 
@@ -130,7 +124,6 @@ public class Calculate {
                if (opStack.isEmpty()) { // 空栈返回ture
                    return true;
                }
-
                // 符号优先级说明（从高到低）:
                // 第1级: (
                // 第2级: * /
