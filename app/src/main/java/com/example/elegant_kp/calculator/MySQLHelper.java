@@ -5,9 +5,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 /**
- * Created by liguiyang on 2018/5/3.
+ * Created by elegant_kp on 2018/5/18
  */
-
 public class MySQLHelper extends SQLiteOpenHelper {
     public MySQLHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
@@ -15,7 +14,7 @@ public class MySQLHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table historys(_id integer primary key autoincrement,result varchar(50), date varchar(50))");
+        db.execSQL("create table historys_db(_id integer primary key autoincrement,result varchar(50), date varchar(50))");
     }
 
     @Override

@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -12,6 +14,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -20,6 +23,11 @@ public class HistoryActivity extends AppCompatActivity {
     ListView listView_result;
     ArrayList<String> arrayList = new ArrayList<>();
     ArrayAdapter<String> arrayAdapter;
+
+    SQLiteDatabase db;
+    MySQLHelper dbhelper;
+    Cursor cursor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,10 +50,29 @@ public class HistoryActivity extends AppCompatActivity {
                 builder.setPositiveButton("是", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        arrayList.remove(position);
-                        arrayAdapter.notifyDataSetChanged();
+                        AlertDialog.Builder builder = new AlertDialog.Builder(HistoryActivity.this);
+                        builder.setTitle("提醒");
+                        builder.setMessage("是否从数据库中完全删除该条记录？");
+                        builder.setPositiveButton("是", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                arrayList.remove(position);
+                                arrayAdapter.notifyDataSetChanged();
+                                //数据库删除
+                                dbhelper = new MySQLHelper(HistoryActivity.this,"kangping.db",null,1);
+                                db = dbhelper.getWritableDatabase();//打开数据库
+                                db.delete("historys_db","_id=?", new String[] {String.valueOf(position + 1)});
 
-                        //数据库删除
+                            }
+                        });
+                        builder.setNegativeButton("否", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                arrayList.remove(position);
+                                arrayAdapter.notifyDataSetChanged();
+                                Toast.makeText(HistoryActivity.this, "已清空该条记录！", Toast.LENGTH_SHORT).show();
+                            }
+                        });
                     }
                 });
                 builder.setNegativeButton("否", new DialogInterface.OnClickListener() {
@@ -91,7 +118,7 @@ public class HistoryActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void clear() {
+    private void clear() {
         AlertDialog.Builder builder = new AlertDialog.Builder(HistoryActivity.this);
         builder.setTitle("提醒");
         builder.setMessage("是否全部删除？");
@@ -101,13 +128,17 @@ public class HistoryActivity extends AppCompatActivity {
                 arrayList.clear();
                 arrayList.add("暂无历史记录！");
                 arrayAdapter.notifyDataSetChanged();
-                //数据库删除
+//                //数据库删除
+//                dbhelper = new MySQLHelper(HistoryActivity.this,"kangping.db",null,1);
+//                db = dbhelper.getWritableDatabase();//打开数据库
+//                db.delete("historys_db",null, null);
+//                Toast.makeText(HistoryActivity.this, "已清空全部历史记录！", Toast.LENGTH_SHORT).show();
             }
         });
         builder.setNegativeButton("否", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-
+                Toast.makeText(HistoryActivity.this, "取消清空历史记录！", Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -22,39 +22,19 @@ import java.util.Date;
 public class MainActivity extends AppCompatActivity {
 
     TextView textView_input, textView_output;
-    Button btn_clear;
-    Button btn_left;
-    Button btn_right;
-    Button btn_del;
-    Button btn_div;
-    Button btn_7;
-    Button btn_8;
-    Button btn_9;
-    Button btn_mul;
-    Button btn_4;
-    Button btn_5;
-    Button btn_6;
-    Button btn_sub;
-    Button btn_1;
-    Button btn_2;
-    Button btn_3;
-    Button btn_add;
-    Button btn_0;
-    Button btn_point;
-    Button btn_equal;
+    Button btn_clear, btn_left, btn_right, btn_del, btn_div, btn_mul, btn_sub, btn_add, btn_point, btn_equal;
+    Button btn_0, btn_1, btn_2, btn_3, btn_4, btn_5, btn_6, btn_7, btn_8, btn_9;
 
     private String str = ""; //保存数字
     private String strOld = ""; //原数字
-    private char op = ' '; //记录运算符
-    private int count = 0; //判断要计算的次数，如果超过一个符号，要算出来一部分
-    private float result = 0; //计算输出结果
-//    private boolean errBoolean = false;//有错误时为true
+    private double result = 0; //计算输出结果
+    private boolean isHistory = false;//判断有无历史记录
     private boolean flagBoolean = false;//如果为true，可以响应运算消息， 只有前面是数字才可以响应运算消息
     private boolean flagPoint = false;//小数点标志位
 
-    String history;
+    String history;  //记录单个历史记录
 
-    ArrayList<String> stringList = new ArrayList<>();
+    ArrayList<String> stringList = new ArrayList<>();//历史记录
 
 
     @Override
@@ -111,8 +91,6 @@ public class MainActivity extends AppCompatActivity {
         btn_equal.setOnClickListener(listener);
     }
 
-
-
     public View.OnClickListener listener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -148,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
                     num(9);
                     break;
                 case R.id.clear:
-                    clear();
+                    my_clear();
                     break;
                 case R.id.left:
                     putChar('(');
@@ -177,7 +155,6 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.equal:
                     getResult();
                     break;
-
                 default:
                         break;
 
@@ -190,7 +167,7 @@ public class MainActivity extends AppCompatActivity {
         str = String.valueOf(i);
         strOld = strOld + str;
         textView_input.setText(strOld);
-        flagBoolean = true;//可以响应运算
+//        flagBoolean = true;//可以响应运算
     }
 
     private void putChar(char c) {
@@ -200,10 +177,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
   //清除界面c
-    private void clear() {
+    private void my_clear() {
         str = strOld = "";
-        count = 0;
-        op = ' ';
         result = 0;
         flagBoolean = false;
         flagPoint = false;
@@ -216,6 +191,7 @@ public class MainActivity extends AppCompatActivity {
     private void del() {
         str = strOld.substring(0, strOld.length() - 1);
         strOld = str;
+        textView_input.setText(strOld);
     }
 
     private void getResult() {
@@ -223,9 +199,16 @@ public class MainActivity extends AppCompatActivity {
         Calculate cal = new Calculate();
         double result = cal.getResult(exp);
         textView_output.setText(String.valueOf(result));
-
+        //历史记录
         history = textView_input.getText().toString() + " = " + textView_output.getText().toString();
+        if(!isHistory) {
+            stringList.clear();
+            stringList.add(history);
+            isHistory = true;
+        }
         stringList.add(history);
+        //保存到数据库
+        save();
     }
 
     @Override
@@ -239,15 +222,15 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.history:
                 Intent intent = new Intent(this, HistoryActivity.class);
-                if(stringList.isEmpty()) {
+                if(stringList.isEmpty() && !isHistory) {
                     stringList.add("暂无历史记录！");
                 }
                 intent.putExtra("historys", stringList);
                 startActivity(intent);
                 break;
-            case R.id.science_model:
+            case R.id.science_model:  //科学模式
                 break;
-            case R.id.setting:
+            case R.id.setting:  //设置
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -257,23 +240,17 @@ public class MainActivity extends AppCompatActivity {
     public void save() {
         SQLiteDatabase db;
         MySQLHelper dbhelper;
-
-        //初始化MySQLHelper对象（建立一个数据库链接/如果没有该数据库，则创建一个数据库）
         dbhelper = new MySQLHelper(this,"kangping.db",null,1);
-        //它会调用并返回一个可以读写数据库的对象
-        //在第一次调用时会调用onCreate的方法
-        //当数据库存在时会调用onOpen方法
-        // 结束时调用onClose方法
         db = dbhelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();   //存储键值对
 
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String temp = df.format(new Date());// new Date()为获取当前系统时间
 
-        contentValues.put("result_history",history);
-        contentValues.put("date","temp");
+        contentValues.put("result",history);
+        contentValues.put("date",temp);
 
-        db.insert("historys", null, contentValues);
+        db.insert("historys_db", null, contentValues);
 
     }
 
