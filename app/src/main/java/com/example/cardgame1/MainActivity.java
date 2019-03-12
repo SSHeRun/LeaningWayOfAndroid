@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Button card = (Button)v;
                 if (card.getText() =="") {
-                    card.setText("♥️♥️♥️");
+                    card.setText("♥️❥");
                     card.setBackgroundResource(R.drawable.blankcard);
                 }else{
                     card.setText("");
