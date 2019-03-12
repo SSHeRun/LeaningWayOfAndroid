@@ -20,7 +20,7 @@ public abstract class Deck {
     public Card drawRandomCard(){
         Card randomCard = null;
         if(cards.size()>0){
-            randomCard = cards.remove(r.nextInt(cards.size()));
+            randomCard = cards.remove(r.nextInt((cards.size())));
         }
         return randomCard;
     }
