@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         btn = (Button)findViewById(R.id.button);
         btn.setOnClickListener(new MyListener());
     }
-    class MyListener implements View.OnClickListener {
+    class MyListener implements View.OnClickListener {//定义内部类
         @Override
         public void onClick(View V) {
             Button card = (Button) V;
