@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">AdapterDemo</string>
+        <string-array name="names">
+            <item>aaa</item>
+            <item>bbb</item>
+            <item>ccc</item>
+            <item>ddd</item>
+        </string-array>
+</resources>
