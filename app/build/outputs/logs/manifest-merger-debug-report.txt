@@ -1,0 +1,87 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\AndroidStudioProjects\BTClient\app\src\main\AndroidManifest.xml:2:1-28:12
+INJECTED from C:\AndroidStudioProjects\BTClient\app\src\main\AndroidManifest.xml:2:1-28:12
+INJECTED from C:\AndroidStudioProjects\BTClient\app\src\main\AndroidManifest.xml:2:1-28:12
+INJECTED from C:\AndroidStudioProjects\BTClient\app\src\main\AndroidManifest.xml:2:1-28:12
+INJECTED from C:\AndroidStudioProjects\BTClient\app\src\main\AndroidManifest.xml:2:1-28:12
+INJECTED from C:\AndroidStudioProjects\BTClient\app\src\main\AndroidManifest.xml:2:1-28:12
+INJECTED from C:\AndroidStudioProjects\BTClient\app\src\main\AndroidManifest.xml:2:1-28:12
+	package
+		ADDED from C:\AndroidStudioProjects\BTClient\app\src\main\AndroidManifest.xml:3:7-34
+		INJECTED from C:\AndroidStudioProjects\BTClient\app\src\main\AndroidManifest.xml
+		INJECTED from C:\AndroidStudioProjects\BTClient\app\src\main\AndroidManifest.xml
+	android:versionName
+		ADDED from C:\AndroidStudioProjects\BTClient\app\src\main\AndroidManifest.xml:5:7-32
+		INJECTED from C:\AndroidStudioProjects\BTClient\app\src\main\AndroidManifest.xml
+		INJECTED from C:\AndroidStudioProjects\BTClient\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\AndroidStudioProjects\BTClient\app\src\main\AndroidManifest.xml:2:11-69
+	android:versionCode
+		ADDED from C:\AndroidStudioProjects\BTClient\app\src\main\AndroidManifest.xml:4:7-30
+		INJECTED from C:\AndroidStudioProjects\BTClient\app\src\main\AndroidManifest.xml
+		INJECTED from C:\AndroidStudioProjects\BTClient\app\src\main\AndroidManifest.xml
+uses-permission#android.permission.BLUETOOTH_ADMIN
+ADDED from C:\AndroidStudioProjects\BTClient\app\src\main\AndroidManifest.xml:7:5-74
+	android:name
+		ADDED from C:\AndroidStudioProjects\BTClient\app\src\main\AndroidManifest.xml:7:22-71
+uses-permission#android.permission.BLUETOOTH
+ADDED from C:\AndroidStudioProjects\BTClient\app\src\main\AndroidManifest.xml:8:5-68
+	android:name
+		ADDED from C:\AndroidStudioProjects\BTClient\app\src\main\AndroidManifest.xml:8:22-65
+uses-permission#android.permission.MOUNT_UNMOUNT_FILESYSTEMS
+ADDED from C:\AndroidStudioProjects\BTClient\app\src\main\AndroidManifest.xml:9:5-84
+	android:name
+		ADDED from C:\AndroidStudioProjects\BTClient\app\src\main\AndroidManifest.xml:9:22-81
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from C:\AndroidStudioProjects\BTClient\app\src\main\AndroidManifest.xml:10:5-81
+	android:name
+		ADDED from C:\AndroidStudioProjects\BTClient\app\src\main\AndroidManifest.xml:10:22-78
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from C:\AndroidStudioProjects\BTClient\app\src\main\AndroidManifest.xml:11:5-79
+	android:name
+		ADDED from C:\AndroidStudioProjects\BTClient\app\src\main\AndroidManifest.xml:11:22-76
+uses-permission#android.permission.ACCESS_COARSE_LOCATION
+ADDED from C:\AndroidStudioProjects\BTClient\app\src\main\AndroidManifest.xml:12:5-81
+	android:name
+		ADDED from C:\AndroidStudioProjects\BTClient\app\src\main\AndroidManifest.xml:12:22-78
+application
+ADDED from C:\AndroidStudioProjects\BTClient\app\src\main\AndroidManifest.xml:13:5-25:19
+	android:label
+		ADDED from C:\AndroidStudioProjects\BTClient\app\src\main\AndroidManifest.xml:13:48-80
+	android:icon
+		ADDED from C:\AndroidStudioProjects\BTClient\app\src\main\AndroidManifest.xml:13:18-47
+activity#com.test.BTClient.BTClient
+ADDED from C:\AndroidStudioProjects\BTClient\app\src\main\AndroidManifest.xml:14:9-20:20
+	android:label
+		ADDED from C:\AndroidStudioProjects\BTClient\app\src\main\AndroidManifest.xml:15:19-51
+	android:name
+		ADDED from C:\AndroidStudioProjects\BTClient\app\src\main\AndroidManifest.xml:14:19-43
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from C:\AndroidStudioProjects\BTClient\app\src\main\AndroidManifest.xml:16:13-19:29
+action#android.intent.action.MAIN
+ADDED from C:\AndroidStudioProjects\BTClient\app\src\main\AndroidManifest.xml:17:17-69
+	android:name
+		ADDED from C:\AndroidStudioProjects\BTClient\app\src\main\AndroidManifest.xml:17:25-66
+category#android.intent.category.LAUNCHER
+ADDED from C:\AndroidStudioProjects\BTClient\app\src\main\AndroidManifest.xml:18:17-77
+	android:name
+		ADDED from C:\AndroidStudioProjects\BTClient\app\src\main\AndroidManifest.xml:18:27-74
+activity#com.test.BTClient.DeviceListActivity
+ADDED from C:\AndroidStudioProjects\BTClient\app\src\main\AndroidManifest.xml:21:3-24:72
+	android:label
+		ADDED from C:\AndroidStudioProjects\BTClient\app\src\main\AndroidManifest.xml:22:19-41
+	android:configChanges
+		ADDED from C:\AndroidStudioProjects\BTClient\app\src\main\AndroidManifest.xml:24:19-69
+	android:theme
+		ADDED from C:\AndroidStudioProjects\BTClient\app\src\main\AndroidManifest.xml:23:19-62
+	android:name
+		ADDED from C:\AndroidStudioProjects\BTClient\app\src\main\AndroidManifest.xml:21:13-47
+uses-sdk
+INJECTED from C:\AndroidStudioProjects\BTClient\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\AndroidStudioProjects\BTClient\app\src\main\AndroidManifest.xml
+INJECTED from C:\AndroidStudioProjects\BTClient\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\AndroidStudioProjects\BTClient\app\src\main\AndroidManifest.xml
+		ADDED from C:\AndroidStudioProjects\BTClient\app\src\main\AndroidManifest.xml
+		INJECTED from C:\AndroidStudioProjects\BTClient\app\src\main\AndroidManifest.xml
