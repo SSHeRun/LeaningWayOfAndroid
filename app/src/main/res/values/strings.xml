@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">AdapterDemo2</string>
+    <string-array name="names">
+        <item>aaa</item>
+        <item>bbb</item>
+        <item>ccc</item>
+        <item>ddd</item>
+        <item>aaa</item>
+        <item>bbb</item>
+        <item>ccc</item>
+        <item>ddd</item>
+        <item>aaa</item>
+        <item>bbb</item>
+        <item>ccc</item>
+        <item>ddd</item>
+        <item>aaa</item>
+        <item>bbb</item>
+        <item>ccc</item>
+        <item>ddd</item>
+    </string-array>
+</resources>
