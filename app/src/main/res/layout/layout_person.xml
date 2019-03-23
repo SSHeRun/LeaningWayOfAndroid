@@ -16,17 +16,31 @@
 ** limitations under the License.
 */
 -->
-<LinearLayout android:layout_height="wrap_content"
+<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="wrap_content"
     android:layout_width="match_parent"
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/text1"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@color/colorAccent"
-        android:gravity="center_vertical" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+
+            android:id="@+id/imageview"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/man" />
+        <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/text1"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/colorAccent"
+            android:gravity="center_vertical" />
+    </LinearLayout>
+
 
     <TextView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/text2"
