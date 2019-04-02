@@ -14,20 +14,21 @@
      limitations under the License.
 -->
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/scan"
-          android:icon="@android:drawable/ic_menu_search"
-          android:title="connect" />
-    <item android:id="@+id/quit" 
-    	android:title="quit" 
-    	android:icon="@android:drawable/ic_delete">
-    </item>
-    <item android:id="@+id/clear" 
-  		  android:title="clear" 
-  		  android:icon="@android:drawable/ic_input_delete">
-  	</item>
-  	<item android:id="@+id/save" 
-  		  android:title="save" 
-  		  android:icon="@android:drawable/ic_menu_save">
-  	</item>
+	<item
+		android:id="@+id/scan"
+		android:icon="@android:drawable/ic_menu_search"
+		android:title="连接" />
+	<item
+		android:id="@+id/quit"
+		android:icon="@android:drawable/ic_delete"
+		android:title="退出"></item>
+	<item
+		android:id="@+id/clear"
+		android:icon="@android:drawable/ic_input_delete"
+		android:title="清空"></item>
+	<item
+		android:id="@+id/save"
+		android:icon="@android:drawable/ic_menu_save"
+		android:title="保存"></item>
 
 </menu>

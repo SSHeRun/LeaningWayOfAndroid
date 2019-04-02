@@ -6,11 +6,11 @@
                 {
                     "source": "C:\\AndroidStudioProjects\\BTClient\\app\\src\\main\\res\\values\\strings.xml",
                     "from": {
-                        "startLines": "3,2",
-                        "startColumns": "4,4",
-                        "startOffsets": "112,55",
-                        "endColumns": "43,56",
-                        "endOffsets": "151,107"
+                        "startLines": "3,-1",
+                        "startColumns": "4,-1",
+                        "startOffsets": "112,-1",
+                        "endColumns": "43,-1",
+                        "endOffsets": "151,-1"
                     },
                     "to": {
                         "startLines": "2,3",
