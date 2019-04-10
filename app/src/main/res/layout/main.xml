@@ -12,7 +12,7 @@
 		android:layout_height="30dp"
 		android:background="@android:color/holo_blue_dark"
 		android:gravity="center"
-		android:text="圣三一最帅"
+		android:text="点滴测试"
 		android:textColor="@android:color/white" />
 
 	<LinearLayout

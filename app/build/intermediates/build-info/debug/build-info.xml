@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <instant-run
     abi="arm64-v8a,armeabi-v7a,armeabi"
-    api-level="28"
+    api-level="23"
     build-mode="FULL"
-    density="xxhdpi"
+    density="420dpi"
     format="10"
     plugin-version="3.2.0"
-    timestamp="1554200918122"
+    timestamp="1554825658741"
     token="7769162083480943837"
-    verifier="FULL_BUILD_REQUESTED" >
+    verifier="COLD_SWAP_REQUESTED" >
 
     <task
         name="javac"
@@ -24,25 +24,13 @@
         duration="0" />
 
     <artifact
-        location="C:\AndroidStudioProjects\BTClient\app\build\intermediates\resources\instant-run\debug\resources-debug.apk"
-        type="SPLIT" />
-    <artifact
-        location="C:\AndroidStudioProjects\BTClient\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
-        type="SPLIT" />
-    <artifact
-        location="C:\AndroidStudioProjects\BTClient\app\build\intermediates\split-apk\debug\slices\slice_6.apk"
-        type="SPLIT" />
-    <artifact
-        location="C:\AndroidStudioProjects\BTClient\app\build\intermediates\split-apk\debug\slices\slice_7.apk"
-        type="SPLIT" />
-    <artifact
         location="C:\AndroidStudioProjects\BTClient\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
         type="SPLIT" />
     <artifact
         location="C:\AndroidStudioProjects\BTClient\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
         type="SPLIT" />
     <artifact
-        location="C:\AndroidStudioProjects\BTClient\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
+        location="C:\AndroidStudioProjects\BTClient\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
         type="SPLIT" />
     <artifact
         location="C:\AndroidStudioProjects\BTClient\app\build\intermediates\split-apk\debug\slices\slice_4.apk"
@@ -51,7 +39,16 @@
         location="C:\AndroidStudioProjects\BTClient\app\build\intermediates\split-apk\debug\slices\slice_5.apk"
         type="SPLIT" />
     <artifact
+        location="C:\AndroidStudioProjects\BTClient\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\AndroidStudioProjects\BTClient\app\build\intermediates\split-apk\debug\slices\slice_6.apk"
+        type="SPLIT" />
+    <artifact
         location="C:\AndroidStudioProjects\BTClient\app\build\intermediates\split-apk\debug\slices\slice_8.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\AndroidStudioProjects\BTClient\app\build\intermediates\split-apk\debug\slices\slice_7.apk"
         type="SPLIT" />
     <artifact
         location="C:\AndroidStudioProjects\BTClient\app\build\intermediates\split-apk\debug\slices\slice_9.apk"
@@ -62,20 +59,8 @@
 
     <build
         build-mode="FULL"
-        timestamp="1554200918122"
-        verifier="FULL_BUILD_REQUESTED" >
-        <artifact
-            location="C:\AndroidStudioProjects\BTClient\app\build\intermediates\resources\instant-run\debug\resources-debug.apk"
-            type="SPLIT" />
-        <artifact
-            location="C:\AndroidStudioProjects\BTClient\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
-            type="SPLIT" />
-        <artifact
-            location="C:\AndroidStudioProjects\BTClient\app\build\intermediates\split-apk\debug\slices\slice_6.apk"
-            type="SPLIT" />
-        <artifact
-            location="C:\AndroidStudioProjects\BTClient\app\build\intermediates\split-apk\debug\slices\slice_7.apk"
-            type="SPLIT" />
+        timestamp="1554825658741"
+        verifier="COLD_SWAP_REQUESTED" >
         <artifact
             location="C:\AndroidStudioProjects\BTClient\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
             type="SPLIT" />
@@ -83,7 +68,7 @@
             location="C:\AndroidStudioProjects\BTClient\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
             type="SPLIT" />
         <artifact
-            location="C:\AndroidStudioProjects\BTClient\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
+            location="C:\AndroidStudioProjects\BTClient\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
             type="SPLIT" />
         <artifact
             location="C:\AndroidStudioProjects\BTClient\app\build\intermediates\split-apk\debug\slices\slice_4.apk"
@@ -92,7 +77,16 @@
             location="C:\AndroidStudioProjects\BTClient\app\build\intermediates\split-apk\debug\slices\slice_5.apk"
             type="SPLIT" />
         <artifact
+            location="C:\AndroidStudioProjects\BTClient\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\AndroidStudioProjects\BTClient\app\build\intermediates\split-apk\debug\slices\slice_6.apk"
+            type="SPLIT" />
+        <artifact
             location="C:\AndroidStudioProjects\BTClient\app\build\intermediates\split-apk\debug\slices\slice_8.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\AndroidStudioProjects\BTClient\app\build\intermediates\split-apk\debug\slices\slice_7.apk"
             type="SPLIT" />
         <artifact
             location="C:\AndroidStudioProjects\BTClient\app\build\intermediates\split-apk\debug\slices\slice_9.apk"
