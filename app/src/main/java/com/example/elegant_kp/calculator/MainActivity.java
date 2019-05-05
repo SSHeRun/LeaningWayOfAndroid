@@ -152,12 +152,13 @@ public class MainActivity extends AppCompatActivity {
                     putChar('.');
                     break;
                 case R.id.equal:
-                    try{
-                        getResult();
-                    }catch (Exception e)
-                    {
-                        System.out.println("计算错误！");
-                    }
+//                    try{
+//                        getResult();
+//                    }catch (Exception e)
+//                    {
+//                        System.out.println("计算错误！");
+//                    }
+                    getResult();
                     break;
                 default:
                         break;
@@ -217,7 +218,7 @@ public class MainActivity extends AppCompatActivity {
             stringList.add(history);
         }
         //保存到数据库
-        save();
+        saveToDb();
     }
 
     @Override
@@ -248,7 +249,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void save() {
+    public void saveToDb() {
         SQLiteDatabase db;
         MySQLHelper dbhelper;
         dbhelper = new MySQLHelper(this,"kangping.db",null,1);

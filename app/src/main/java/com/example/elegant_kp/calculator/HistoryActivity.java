@@ -123,7 +123,6 @@ public class HistoryActivity extends AppCompatActivity {
         });
 
         builder.show();
-
     }
 
 

@@ -25,7 +25,7 @@ public class Calculate {
         }
         // 用于缓存数字，因为数字可能是多位的
         StringBuffer temp = new StringBuffer();
-        // 从表达式的第一个字符开始处理
+        // 从表达式的第一个字符开始处理 
         for (int i = 0; i < exp.length(); i++) {
             char ch = exp.charAt(i); // 获取一个字符
             if (isNumber(ch)) { // 若当前字符是数字
@@ -83,15 +83,14 @@ public class Calculate {
             return false;
         MyStack stack = new MyStack();
 
-//        boolean b = false;//用来标记等号是否存在多个
+        boolean b = false;//用来标记等号是否存在多个
 
         for (int i = 0; i < str.length(); i++) {
            char n = str.charAt(i);  //得到i位置字符
-            char next = str.charAt(i + 1);
              // 判断字符是否合法
            if (!(isNumber(n) || "(".equals(n + "") || ")".equals(n + "")
                    || "+".equals(n + "") || "-".equals(n + "")
-                   || "*".equals(n + "") || "/".equals(n + ""))) {
+                   || "*".equals(n + "") || "/".equals(n + "") || "=".equals(n + ""))) {
                          return false;
            }
            // 将左括号压栈，用来给后面的右括号进行匹配
@@ -101,14 +100,21 @@ public class Calculate {
            if (")".equals(n + "")) { // 匹配括号
                if (stack.isEmpty() || !"(".equals((char) stack.myPop() + "")) // 括号是否匹配,多右括号
                    return false;
-               }
-             }
+           }
+
+            // 检查是否有多个'='号
+            if ("=".equals(n + "")) {
+               if (b)
+                   return false;
+                b = true;
+            }
+        }
              // 可能会有缺少右括号的情况
            if (!stack.isEmpty())
                    return false;
       // 检查'='号是否不在末尾
-//         if (!("=".equals(str.charAt(str.length() - 1) + "")))
-//             return false;
+         if (!("=".equals(str.charAt(str.length() - 1) + "")))
+             return false;
         return true;
     }
 
