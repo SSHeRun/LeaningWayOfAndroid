@@ -1,9 +1,11 @@
 package com.example.recyclercardgame2.model;
 
+import java.io.Serializable;
+
 /**
  * Created by liguiyang on 16/3/7.
  */
-public abstract class Card {
+public abstract class Card implements Serializable {
     private boolean _chosen;
     private  boolean _matched;
     public abstract String getContents();

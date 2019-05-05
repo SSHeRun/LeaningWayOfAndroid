@@ -1,9 +1,11 @@
 package com.example.recyclercardgame2.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class CardMatchingGame {
+public class CardMatchingGame implements Serializable {
     private ArrayList<Card> cards;
+    public ArrayList<String> playHistory = new ArrayList<>();
 
     private int count = 0;
     private int score = 0;
@@ -50,18 +52,23 @@ public class CardMatchingGame {
 
     public void chooseCardAtIndex(int index){
         Card card = cardAtIndex(index);
+        String play = "";
         if(!card.isMatched()){
             if(card.isChosen()){
+                play = card.getContents() + " Card Down";
                 card.setChosen(false);
             }else{
+                play = card.getContents() + " Card Up";
                 for (Card otherCard : cards) {
                     if(otherCard.isChosen() && !otherCard.isMatched()){
                         int matchScore = card.match(new Card[] {otherCard});
                         if (matchScore > 0) {
+                            play = card.getContents() + " matched " + otherCard.getContents();
                             score += matchScore * MATCH_BONUS;
                             otherCard.setMatched(true);
                             card.setMatched(true);
                         }else{
+                            play = card.getContents() + " don't matche " + otherCard.getContents();
                             score -=MISMATCH_PENALTY;
                             otherCard.setChosen(false);
                         }
@@ -71,6 +78,7 @@ public class CardMatchingGame {
                 score -= COST_TO_CHOOSE;
                 card.setChosen(true);
             }
+            playHistory.add(play);
         }
     }
 
