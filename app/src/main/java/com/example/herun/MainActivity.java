@@ -102,7 +102,8 @@ public class MainActivity extends AppCompatActivity {
 
         byte[] midbytes=res.getBytes("UTF8");
         try {
-            fileOutputStream = new FileOutputStream(filename);
+            fileOutputStream = new FileOutputStream(filename,true);
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
