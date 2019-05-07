@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     FileOutputStream fileOutputStream;
     File file;
     String filename;
+    String res;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,27 +59,35 @@ public class MainActivity extends AppCompatActivity {
         number2 = findViewById(R.id.editText2);
         result = findViewById(R.id.textView_result);
 
-//        //准备好外部存储文件
-//        file= getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS);
-//        filename = file.getAbsolutePath()+"/1.txt";
-//
-//
-//        int len = -1;
-//        byte[] bytes = new byte[100];  //字节数组
-//        InputStream inputStream = null;
-//        try {
-//            inputStream = new FileInputStream(filename);
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        }
-//        while ((len=inputStream.read(bytes))!=-1){   //read按字节读取
-//            try {
-//                String srt2=new String(bytes,"UTF-8");
-//            } catch (UnsupportedEncodingException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//        inputStream.close();
+        //准备好外部存储文件
+        file= getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS);
+        filename = file.getAbsolutePath()+"/1.txt";
+
+
+        int len = -1;
+        byte[] bytes = new byte[100];  //字节数组
+        InputStream inputStream = null;
+        try {
+            inputStream = new FileInputStream(filename);
+            while ((len=inputStream.read(bytes))!=-1){   //read按字节读取
+
+                try {
+                    String srt2=new String(bytes,"UTF-8");
+                    jisuan.add(srt2);
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+            }
+            inputStream.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+
+
     }
 
     public void add(View view) throws IOException {
@@ -87,18 +96,20 @@ public class MainActivity extends AppCompatActivity {
         int num2 = Integer.parseInt(number2.getText().toString());
         int all = num1+num2;
         result.setText("Result is:"+all);
-        String res="Result is:"+ all;
+        res="Result is:"+ all;
+
         jisuan.add(res);
+
         byte[] midbytes=res.getBytes("UTF8");
+        try {
+            fileOutputStream = new FileOutputStream(filename);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        fileOutputStream.write(midbytes,0,res.length());
+        fileOutputStream.close();
 
-//        try {
-//            fileOutputStream = new FileOutputStream(filename);
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        }
-//        fileOutputStream.write(midbytes,0,res.length());
-//        fileOutputStream.close();
-
+        sendNotification();
     }
 
     public void history(View view) throws IOException {
@@ -119,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
             manager.createNotificationChannel(channel);
             builder = new NotificationCompat.Builder(this, myChannel);
             builder.setSmallIcon(R.mipmap.ic_launcher)
-                    .setContentTitle("计算结果");
+                    .setContentTitle("计算结果"+res);
             manager.notify(1, builder.build());
         }
     }
