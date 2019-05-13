@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_return"
+        android:icon="@mipmap/ic_launcher"
+        android:title="继续计算" />
+    <item
+        android:id="@+id/menu_clear"
+        android:title="清除记录" />
+    <item
+        android:id="@+id/menu_db"
+        android:title="查看数据库内容" />
+</menu>
